@@ -11,7 +11,7 @@ RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 CMD ["/sbin/my_init"]
 
 # Elasticsearch version
-ENV     ELASTICSEARCH_VERSION 1.3.0
+ENV     ELASTICSEARCH_VERSION 1.3.2
 ENV     ELASTICSEARCH_URL https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.deb
 
 # elasticsearch
@@ -22,13 +22,13 @@ RUN	cd /tmp \
 	&& /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head \
 	&& echo "cluster.name: logstash" >> /etc/elasticsearch/elasticsearch.yml
 
-RUN mkdir -p /etc/service/elasticsearch/ && \
+RUN mkdir -p /etc/service/elasticsearch/ /data && \
 	chown elasticsearch:elasticsearch /data
 ADD	elasticsearch.sh /etc/service/elasticsearch/run
 
 EXPOSE 9200 9300
 
-VOLUME "/data"
+VOLUME /data
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
