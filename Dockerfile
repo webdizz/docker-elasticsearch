@@ -22,7 +22,8 @@ RUN	cd /tmp \
 	&& /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head \
 	&& echo "cluster.name: logstash" >> /etc/elasticsearch/elasticsearch.yml
 
-RUN mkdir -p /etc/service/elasticsearch/
+RUN mkdir -p /etc/service/elasticsearch/ && \
+	chown elasticsearch:elasticsearch /data
 ADD	elasticsearch.sh /etc/service/elasticsearch/run
 
 EXPOSE 9200 9300

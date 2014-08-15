@@ -6,6 +6,6 @@ exec setuser elasticsearch \
     -Des.path.home=/usr/share/elasticsearch -cp :/usr/share/elasticsearch/lib/elasticsearch-1.1.0.jar:/usr/share/elasticsearch/lib/*:/usr/share/elasticsearch/lib/sigar/* \
     -Des.default.config=/etc/elasticsearch/elasticsearch.yml -Des.default.path.home=/usr/share/elasticsearch \
     -Des.default.path.logs=/var/log/elasticsearch \
-    -Des.default.path.data=/var/lib/elasticsearch -Des.default.path.work=/tmp/elasticsearch \
+    -Des.default.path.data=/data -Des.default.path.work=/tmp/elasticsearch \
     -Des.default.path.conf=/etc/elasticsearch org.elasticsearch.bootstrap.Elasticsearch \
     >> /var/log/elasticsearch.log 2>&1
